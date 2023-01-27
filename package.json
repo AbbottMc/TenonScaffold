@@ -22,8 +22,6 @@
   "license": "MIT",
   "dependencies": {
     "@metalsmith/layouts": "^2.6.0",
-    "@types/handlebars": "^4.1.0",
-    "@types/metalsmith": "^2.3.1",
     "chalk": "^5.2.0",
     "child_process": "^1.0.2",
     "commander": "^10.0.0",
@@ -36,6 +34,8 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-typescript": "^11.0.0",
+    "@types/handlebars": "^4.1.0",
+    "@types/metalsmith": "^2.3.1",
     "rollup": "^3.10.1",
     "ts-loader": "^9.3.0",
     "typescript": "^4.7.2",

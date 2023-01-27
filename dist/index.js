@@ -60,7 +60,7 @@ const initPack = (projectName, metadata) => {
         }).build(function (err) {
             rimraf.sync(projectPath);
             handleError(err);
-            child_process.exec('npm i', { cwd: `./${projectName}/bev/scripts/` }, (error) => {
+            child_process.exec('npm i', { cwd: `./${projectName}/` }, (error) => {
                 handleError(error);
                 console.log(`\n √ 项目初始化成功`);
             });

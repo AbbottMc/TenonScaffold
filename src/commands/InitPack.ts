@@ -48,7 +48,7 @@ export const initPack = (projectName: string, metadata: object) => {
       }).build(function (err) {
       sync(projectPath);
       handleError(err);
-      exec('npm i', {cwd: `./${projectName}/bev/scripts/`}, (error) => {
+      exec('npm i', {cwd: `./${projectName}/`}, (error) => {
         handleError(error);
         console.log(`\n √ 项目初始化成功`);
       });
