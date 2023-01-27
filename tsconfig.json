@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/",
+    "noImplicitAny": true,
+    "moduleResolution": "Node",
+    "module": "es6",
+    "target": "es6",
+    "lib": [
+      "ES6",
+      "ES2021"
+    ],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
