@@ -1,6 +1,6 @@
 {
   "name": "tenonffold",
-  "version": "1.0.0-prerealse",
+  "version": "1.0.1-prerelease",
   "description": "Minecraft基岩版脚本API工程脚手架",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
