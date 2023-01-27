@@ -5,6 +5,7 @@ var Metalsmith = require('metalsmith');
 var child_process = require('child_process');
 var Handlebars = require('handlebars');
 var rimraf = require('rimraf');
+var download = require('download-git-repo');
 
 function _interopNamespaceDefault(e) {
     var n = Object.create(null);
@@ -33,13 +34,13 @@ const handleError = function (error) {
     process.exit();
 };
 const cloneTemplate = function (projectPath, templateVersion, callback) {
-    const repoURL = 'https://github.com/AbbottMc/BedrockScriptTemplates';
+    const repo = 'AbbottMc/BedrockScriptTemplates';
     const branch = templateVersion;
-    const cmdStr = `git clone -b ${branch} ${repoURL} ${projectPath}`;
-    console.log('\n start clone template...');
-    child_process.exec(cmdStr, (error) => {
+    // const cmdStr = `git clone -b ${branch} ${repoURL} ${projectPath}`;
+    console.log('开始克隆模板...');
+    download(`${repo}#${branch}`, path__namespace.resolve(__dirname, projectPath), function (error) {
         handleError(error);
-        console.log(`\n √ 模板克隆成功`);
+        console.log(`√ 模板克隆成功`);
         callback();
     });
 };
@@ -51,7 +52,6 @@ const initPack = (projectName, metadata) => {
             .use((files, metalsmith, done) => {
             Object.keys(files).forEach(fileName => {
                 if (fileName.endsWith('.json') || fileName.endsWith('.js')) {
-                    console.log(fileName);
                     const fileContentsString = files[fileName].contents.toString(); //Handlebar compile 前需要转换为字符创
                     files[fileName].contents = Buffer.from(Handlebars.compile(fileContentsString)(metalsmith.metadata()));
                 }
@@ -60,9 +60,10 @@ const initPack = (projectName, metadata) => {
         }).build(function (err) {
             rimraf.sync(projectPath);
             handleError(err);
+            console.log(`安装node模块...`);
             child_process.exec('npm i', { cwd: `./${projectName}/` }, (error) => {
                 handleError(error);
-                console.log(`\n √ 项目初始化成功`);
+                console.log(`√ 项目初始化成功`);
             });
         });
     };
